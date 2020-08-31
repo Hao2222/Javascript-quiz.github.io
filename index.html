@@ -1,21 +1,25 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link href="style.css" rel="stylesheet">
-  <title>Java Script Fundamentals Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
-  
-<div class="container">
-  <p id="timer"></p>
-  <div id="quiz"></div>
-  <button id="start-btn" class="start-btn btn">Start</button>
-  <button id="next-btn" class="next-btn btn hide">Next</button>
-</div>
+    <div id="quizContainer" class="container">
+        <div class="title"> Javascript Quiz</div>
+        <p> There are 10 questions on this quiz. Each question is worth 1 point. You will get a total score at the end of the quiz</p>
+        <div id="question" class="question"></div>
+        <label class="choices"><input type="radio" name="choices" value="1" /><span id="choice1"></span></label>
+        <label class="choices"><input type="radio" name="choices" value="2" /><span id="choice2"></span></label>
+        <label class="choices"><input type="radio" name="choices" value="3" /><span id="choice3"></span></label>
+        <label class="choices"><input type="radio" name="choices" value="4" /><span id="choice4"></span></label>
+        <button id="nextButton" class="next-btn" onclick="nextQuestion();">Next Question</button>
+    </div>
 
-  <script src="script.js"></script>
+    <div id="result" class="container result" style="display:none;"></div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

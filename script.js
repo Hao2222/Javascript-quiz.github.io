@@ -1,48 +1,44 @@
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+var currentQuestion =0;
+var score = 0;
+var totalQuestions = questions.length;
+var container =document.getElementById('quizContainer');
+var questionEl=document.getElementById('question');
+var choice1 = document.getElementById('choice1');
+var choice2 = document.getElementById('choice2');
+var choice3 = document.getElementById('choice3');
+var choice4 = document.getElementById('choice4');
+var nextButton = document.getElementById('nextButton');
+var resultCont = document.getElementById('result');
 
-
-var counter = 0
-var totalTime = 65;
-
-var x = setInterval(function() {
-    counter++;
-
-  var timeLeft = totalTime - counter;
-
-  var seconds = Math.floor(timeLeft);
- 
-  document.getElementById("timer").innerHTML = seconds;
-
-  if (timeLeft < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "Time's Up!";
-  }
-}, 1000);
-
-
-// const questions = [
-//     {
-//       question: 'Each page on a website can be seen as a __________',
-//       answers: {
-//             a: "Document",
-//             b: "Object",
-//             c: "Spread sheet"
-//       },
-//       correctAnswer: "c"
-//     },
-//     {
-//         question: 'Once the variable has been created, you do not need to use the var keyword to assign it a new value',
-//         answers: {
-//               a: "true",
-//               b: "false",
-//               c: "maybe"
-//         },
-//         correctAnswer: "a" 
-//     }
-        
-
- 
+function getQuestion (questionIndex){
+    var q = questions[questionIndex];
+    questionEl.textContent = (questionIndex + 1) + '. ' + q.question;
+    choice1.textContent = q.choice1;
+    choice2.textContent = q.choice2;
+    choice3.textContent = q.choice3;
+    choice4.textContent = q.choice4;
+}
+function nextQuestion(){
+    var selectedOption=document.querySelector('input[type=radio]:checked');
+    if(!selectedOption){
+        alert('Please select answer!');
+        return;
+    }
+    var answer = selectedOption.value;
+    if(questions[currentQuestion].answer == answer){
+        score +=1;
+    }
+    selectedOption.checked = false;
+    currentQuestion++;
+    if(currentQuestion == totalQuestions-1){
+        nextButton.textContent = 'Done';
+    }
+    if(currentQuestion == totalQuestions){
+        container.style.display = 'none';
+        resultCont.style.display = '';
+        resultCont.textContent = 'Your Score: '+ score;
+        return;
+    }
+    getQuestion(currentQuestion);
+}
+getQuestion(currentQuestion);
